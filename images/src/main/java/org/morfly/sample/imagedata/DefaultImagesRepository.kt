@@ -1,8 +1,6 @@
 package org.morfly.sample.imagedata
 
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 
@@ -40,8 +38,12 @@ class DefaultImagesRepository @Inject constructor() : ImagesRepository {
         )
     }
 
-    override fun loadImages(): Flow<List<Image>> = flow {
+    init {
+        R.layout.test
+    }
+
+    override suspend fun loadImages(): List<Image> {
         delay(timeMillis = 1_200)
-        emit(images)
+        return images
     }
 }

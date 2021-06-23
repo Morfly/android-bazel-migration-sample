@@ -49,13 +49,13 @@ class FeedFragment : Fragment(R.layout.fragment_feed) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.viewState.collect {
-
-                    progressIndicator.visibility =
-                        if (it is FeedViewState.Loading) VISIBLE
-                        else GONE
-                    feedAdapter.submitList(it.images)
-                }
+//                viewModel.viewState.collect {
+//
+//                    progressIndicator.visibility =
+//                        if (it is FeedViewState.Loading) VISIBLE
+//                        else GONE
+//                    feedAdapter.submitList(it.images)
+//                }
             }
         }
         feedRecyclerView.adapter = feedAdapter
