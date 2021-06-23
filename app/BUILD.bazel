@@ -1,26 +1,22 @@
-load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_android_library")
 load("@rules_android//android:rules.bzl", "android_binary")
+load("@rules_android//android:rules.bzl", "android_library")
 load("@rules_jvm_external//:defs.bzl", "artifact")
 
-kt_android_library(
-    name = "app",
-    srcs = glob(["src/main/java/**/*.kt"]),
+exports_files(
+    ["src/main/AndroidManifest.xml"],
+    visibility = ["//app:__subpackages__"],
+)
+
+android_library(
+    name = "res",
     resource_files = glob(["src/main/res/**"]),
     custom_package = "org.morfly.sample",
     manifest = "src/main/AndroidManifest.xml",
-    visibility = ["//visibility:public"],
+    visibility = ["//app:__subpackages__"],
     deps = [
-        "//images",
-        "//:dagger",
-        "//:kotlin_coroutines_jvm",
-        artifact("androidx.core:core-ktx"),
-        artifact("androidx.lifecycle:lifecycle-viewmodel-ktx"),
-        artifact("androidx.lifecycle:lifecycle-runtime-ktx"),
-        artifact("androidx.fragment:fragment-ktx"),
         artifact("androidx.appcompat:appcompat"),
         artifact("com.google.android.material:material"),
         artifact("androidx.constraintlayout:constraintlayout"),
-        artifact("io.coil-kt:coil"),
     ],
 )
 
@@ -34,12 +30,12 @@ android_binary(
         "versionCode": "1",
         "versionName": "1.0",
     },
-    dexopts = [
-            "--force-jumbo"
-    ],
     multidex = "native",
     incremental_dexing = 1,
     debug_key = ":debug.keystore",
     visibility = ["//visibility:public"],
-    deps = [":app"],
+    deps = [
+        ":res",
+        "//app/src/main/java/org/morfly/sample:app",
+    ],
 )
