@@ -7,13 +7,8 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import org.morfly.sample.AppComponentProvider
 import org.morfly.sample.Navigator
 import org.morfly.sample.R
@@ -47,17 +42,12 @@ class FeedFragment : Fragment(R.layout.fragment_feed) {
         val feedAdapter = FeedAdapter(onItemClick = ::navigateToDetails)
         val progressIndicator = view.findViewById<View>(R.id.progress)
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                viewModel.viewState.collect {
-//
-//                    progressIndicator.visibility =
-//                        if (it is FeedViewState.Loading) VISIBLE
-//                        else GONE
-//                    feedAdapter.submitList(it.images)
-//                }
-            }
-        }
+        viewModel.viewState.observe(viewLifecycleOwner, {
+            progressIndicator.visibility =
+                if (it is FeedViewState.Loading) VISIBLE
+                else GONE
+            feedAdapter.submitList(it.images)
+        })
         feedRecyclerView.adapter = feedAdapter
     }
 

@@ -38,10 +38,6 @@ class DefaultImagesRepository @Inject constructor() : ImagesRepository {
         )
     }
 
-    init {
-        R.layout.test
-    }
-
     override suspend fun loadImages(): List<Image> {
         delay(timeMillis = 1_200)
         return images
