@@ -8,7 +8,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "org.morfly.migration"
+        applicationId "org.morfly.sample"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
