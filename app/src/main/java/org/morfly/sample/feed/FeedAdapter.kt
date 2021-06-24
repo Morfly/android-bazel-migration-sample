@@ -48,7 +48,7 @@ class FeedAdapter(val onItemClick: (image: Image) -> Unit) :
         fun load(image: Image) {
             this.image = image
             imageView.load(image.url) {
-                crossfade(250)
+                crossfade(true)
             }
         }
     }
