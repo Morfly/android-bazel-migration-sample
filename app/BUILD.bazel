@@ -10,17 +10,16 @@ kt_android_library(
     manifest = "src/main/AndroidManifest.xml",
     visibility = ["//visibility:public"],
     deps = [
-        "//images",
         "//:dagger",
-        "//:kotlin_coroutines_jvm",
-        artifact("androidx.core:core-ktx"),
-        artifact("androidx.lifecycle:lifecycle-viewmodel-ktx"),
-        artifact("androidx.lifecycle:lifecycle-runtime-ktx"),
-        artifact("androidx.fragment:fragment-ktx"),
-        artifact("androidx.appcompat:appcompat"),
-        artifact("com.google.android.material:material"),
-        artifact("androidx.constraintlayout:constraintlayout"),
-        artifact("io.coil-kt:coil"),
+		"//images",
+		artifact("androidx.core:core-ktx"),
+		artifact("androidx.lifecycle:lifecycle-viewmodel-ktx"),
+		artifact("androidx.lifecycle:lifecycle-runtime-ktx"),
+		artifact("androidx.fragment:fragment-ktx"),
+		artifact("androidx.appcompat:appcompat"),
+		artifact("com.google.android.material:material"),
+		artifact("androidx.constraintlayout:constraintlayout"),
+		artifact("io.coil-kt:coil")
     ],
 )
 

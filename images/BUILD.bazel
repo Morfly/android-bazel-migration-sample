@@ -9,10 +9,10 @@ kt_android_library(
     manifest = "src/main/AndroidManifest.xml",
     visibility = ["//visibility:public"],
     deps = [
-        "//:kotlin_coroutines_jvm",
         "//:dagger",
-        artifact("androidx.core:core-ktx"),
-        artifact("androidx.appcompat:appcompat"),
-        artifact("com.google.android.material:material"),
+        "//:kotlin_coroutines_jvm",
+ 		artifact("androidx.core:core-ktx"),
+		artifact("androidx.appcompat:appcompat"),
+		artifact("com.google.android.material:material")
     ],
 )

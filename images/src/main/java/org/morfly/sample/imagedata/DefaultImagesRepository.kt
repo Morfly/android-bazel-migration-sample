@@ -1,6 +1,8 @@
 package org.morfly.sample.imagedata
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -38,8 +40,8 @@ class DefaultImagesRepository @Inject constructor() : ImagesRepository {
         )
     }
 
-    override suspend fun loadImages(): List<Image> {
+    override suspend fun loadImages(): List<Image> = withContext(Dispatchers.Default){
         delay(timeMillis = 1_200)
-        return images
+        images
     }
 }

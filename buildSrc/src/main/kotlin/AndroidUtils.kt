@@ -25,5 +25,5 @@ fun Project.manifest(): File? {
     return ext
         ?.sourceSets
         ?.map { it.manifest.srcFile }
-        ?.firstOrNull()
+        ?.firstOrNull(File::exists)
 }

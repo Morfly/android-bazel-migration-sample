@@ -12,9 +12,15 @@ import java.io.File
 
 open class MigrateToBazelTask : DefaultTask() {
 
-    private val allArtifacts = mutableListOf<String>()
+    private val allArtifacts = mutableSetOf<String>()
 
-    private val configs = setOf(
+    private val ignoredArtifactNames = setOf(
+        "kotlin-stdlib",
+        "kotlinx-coroutines-core",
+        "dagger"
+    )
+
+    private val gradleConfigs = setOf(
         "implementation",
         "api"
     )
@@ -34,13 +40,15 @@ open class MigrateToBazelTask : DefaultTask() {
 
         // find dependencies
         project.configurations
-            .filter { it.name in configs }
+            .filter { it.name in gradleConfigs }
             .flatMap { it.dependencies }
-            .mapNotNull { dep ->
+            .forEach { dep ->
                 when (dep) {
                     is ExternalDependency -> {
-                        allArtifacts += "${dep.group}:${dep.name}:${dep.version}"
-                        artifactDeps += "${dep.group}:${dep.name}"
+                        if (dep.name !in ignoredArtifactNames) {
+                            artifactDeps += "${dep.group}:${dep.name}"
+                            allArtifacts += "${dep.group}:${dep.name}:${dep.version}"
+                        }
                     }
                     is ProjectDependency -> {
                         moduleDeps += dep.dependencyProject.path
@@ -48,25 +56,16 @@ open class MigrateToBazelTask : DefaultTask() {
                             .filter { it.isNotBlank() }
                             .joinToString(prefix = "//", separator = "/")
                     }
-                    else -> null
                 }
             }
 
-        // format deependencies
-        val artifacts = artifactDeps.joinToString(
-            prefix = "[\n",
-            separator = ",\n",
-            postfix = "]"
-        ) { artifact ->
-            "    artifact(\"$artifact\")"
+        // format dependencies
+        val artifacts = artifactDeps.joinToString(separator = ",\n") { artifact ->
+            "\t\tartifact(\"$artifact\")"
         }
 
-        val deps = moduleDeps.joinToString(
-            prefix = "[\n",
-            separator = ",\n",
-            postfix = "]"
-        ) { module ->
-            "    \"$module\""
+        val deps = moduleDeps.joinToString(separator = ",\n") { module ->
+            "\t\t\"$module\""
         }
 
         // map templates to right gradle modules
@@ -91,12 +90,8 @@ open class MigrateToBazelTask : DefaultTask() {
     }
 
     private fun createWorkspaceFile() {
-        val artifacts = allArtifacts.joinToString(
-            prefix = "[\n",
-            separator = ",\n",
-            postfix = "]"
-        ) { artifact ->
-            "    artifact(\"$artifact\")"
+        val artifacts = allArtifacts.joinToString(separator = ",\n") { artifact ->
+            "\t\t\"$artifact\""
         }
         val workspaceFile = File("${project.projectDir}/WORKSPACE")
         workspaceFile.createNewFile()
