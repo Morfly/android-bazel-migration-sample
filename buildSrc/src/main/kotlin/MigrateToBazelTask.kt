@@ -77,7 +77,7 @@ open class MigrateToBazelTask : DefaultTask() {
                 hasPlugin("com.android.library") ->
                     library_build(project.name, project.packageName()!!, artifacts)
 
-                !hasPlugin("java") ->
+                project == project.rootProject ->
                     root_build()
 
                 else -> error("Unable to find template for project '${project.name}'")
