@@ -20,6 +20,7 @@ allprojects {
     }
 }
 
+apply<MigrationPlugin>()
 
 tasks.register<Delete>("clean") {
     delete(rootProject.buildDir)

@@ -34,9 +34,6 @@ android_binary(
         "versionCode": "1",
         "versionName": "1.0",
     },
-    dexopts = [
-            "--force-jumbo"
-    ],
     multidex = "native",
     incremental_dexing = 1,
     debug_key = ":debug.keystore",
