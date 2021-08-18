@@ -34,14 +34,14 @@ android {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
-    implementation("androidx.core:core-ktx:1.5.0")
-    implementation("androidx.appcompat:appcompat:1.3.0")
-    implementation("com.google.android.material:material:1.3.0")
-    implementation("com.google.dagger:dagger:2.36")
-    kapt("com.google.dagger:dagger-compiler:2.36")
+    implementation(libs.coroutines)
+    implementation(libs.androidCore)
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.dagger)
+    kapt(libs.daggerCompiler)
 
-    testImplementation("junit:junit:4.+")
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidJunit)
+    androidTestImplementation(libs.espresso)
 }
