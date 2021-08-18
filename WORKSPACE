@@ -35,7 +35,6 @@ maven_install(
 		"org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1",
 		"androidx.core:core-ktx:1.6.0",
 		"androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1",
-		"androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha03",
 		"androidx.fragment:fragment-ktx:1.4.0-alpha03",
 		"androidx.appcompat:appcompat:1.3.0",
 		"com.google.android.material:material:1.4.0",
