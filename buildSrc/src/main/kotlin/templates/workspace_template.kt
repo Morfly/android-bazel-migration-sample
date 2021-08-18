@@ -1,5 +1,6 @@
 package templates
 
+
 fun workspace(artifacts: String) = """
 workspace(name = "android-migration-sample")
 
@@ -88,4 +89,4 @@ http_archive(
 load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kotlin_repositories", "kt_register_toolchains")
 kotlin_repositories()
 kt_register_toolchains()
-"""
+""".trimIndent()

@@ -43,4 +43,4 @@ android_binary(
     visibility = ["//visibility:public"],
     deps = [":$name"],
 )
-"""
+""".trimIndent()

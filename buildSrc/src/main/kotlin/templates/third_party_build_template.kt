@@ -34,4 +34,4 @@ kt_jvm_import(
     ],
     jars = ["@maven_secondary//:v1/https/repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.5.1/kotlinx-coroutines-core-jvm-1.5.1.jar"],
 )
-"""
+""".trimIndent()
