@@ -11,7 +11,6 @@ LIB_FILES = [
 ARTIFACTS = [
         artifact("androidx.core:core-ktx"),
         artifact("androidx.lifecycle:lifecycle-viewmodel-ktx"),
-        artifact("androidx.lifecycle:lifecycle-runtime-ktx"),
         artifact("androidx.fragment:fragment-ktx"),
         artifact("androidx.appcompat:appcompat"),
         artifact("com.google.android.material:material"),

@@ -32,24 +32,29 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 
 maven_install(
     artifacts = DAGGER_ARTIFACTS + [
-        "androidx.core:core-ktx:1.5.0",
-        "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1",
-        "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02",
-        "androidx.fragment:fragment-ktx:1.4.0-alpha03",
-        "androidx.appcompat:appcompat:1.3.0",
-        "com.google.android.material:material:1.3.0",
-        "androidx.constraintlayout:constraintlayout:2.0.4",
-        "io.coil-kt:coil:1.1.1",
-    ],
-    excluded_artifacts = [
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm",
-        "org.jetbrains.kotlinx:kotlinx-coroutines-android",
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+		"org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1",
+		"androidx.core:core-ktx:1.6.0",
+		"androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1",
+		"androidx.fragment:fragment-ktx:1.4.0-alpha03",
+		"androidx.appcompat:appcompat:1.3.0",
+		"com.google.android.material:material:1.4.0",
+		"androidx.constraintlayout:constraintlayout:2.1.0",
+		"io.coil-kt:coil:1.3.1"
     ],
     repositories = DAGGER_REPOSITORIES + [
         "https://maven.google.com",
         "https://repo1.maven.org/maven2",
     ],
+    override_targets = {
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm": "@//third_party:kotlinx_coroutines_core_jvm",
+        "org.jetbrains.kotlin:kotlin-reflect": "@//third_party:kotlin_reflect",
+    },
+)
+
+maven_install(
+    name = "maven_secondary",
+    artifacts = ["org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.1"],
+    repositories = ["https://repo1.maven.org/maven2"],
 )
 
 # ===== android rules =====
@@ -74,8 +79,8 @@ android_sdk_repository(
 
 # ===== kotlin rules =====
 
-RULES_KOTLIN_VERSION = "v1.5.0-alpha-3"
-RULES_KOTLIN_SHA = "eeae65f973b70896e474c57aa7681e444d7a5446d9ec0a59bb88c59fc263ff62"
+RULES_KOTLIN_VERSION = "v1.5.0-beta-3"
+RULES_KOTLIN_SHA = "58edd86f0f3c5b959c54e656b8e7eb0b0becabd412465c37a2078693c2571f7f"
 
 http_archive(
     name = "io_bazel_rules_kotlin",
