@@ -1,6 +1,5 @@
 plugins {
     `kotlin-dsl`
-    id("java-gradle-plugin")
 }
 
 repositories {
@@ -9,5 +8,5 @@ repositories {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:4.2.1")
+    compileOnly("com.android.tools.build:gradle:7.0.0")
 }
