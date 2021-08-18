@@ -1,4 +1,3 @@
-
 load("@rules_java//java:defs.bzl", "java_library", "java_import",)
 load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_jvm_import")
 load("@rules_jvm_external//:defs.bzl", "artifact")

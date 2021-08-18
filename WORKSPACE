@@ -1,4 +1,3 @@
-
 workspace(name = "android-migration-sample")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
@@ -33,15 +32,15 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 
 maven_install(
     artifacts = DAGGER_ARTIFACTS + [
-		"org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1",
+		"org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0",
 		"androidx.core:core-ktx:1.5.0",
 		"androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1",
 		"androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02",
 		"androidx.fragment:fragment-ktx:1.4.0-alpha03",
 		"androidx.appcompat:appcompat:1.3.0",
-		"com.google.android.material:material:1.4.0",
-		"androidx.constraintlayout:constraintlayout:2.1.0",
-		"io.coil-kt:coil:1.3.1"
+		"com.google.android.material:material:1.3.0",
+		"androidx.constraintlayout:constraintlayout:2.0.4",
+		"io.coil-kt:coil:1.2.2"
     ],
     repositories = DAGGER_REPOSITORIES + [
         "https://maven.google.com",

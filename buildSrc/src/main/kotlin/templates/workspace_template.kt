@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 package templates
 
 
@@ -76,8 +78,8 @@ android_sdk_repository(
 
 # ===== kotlin rules =====
 
-RULES_KOTLIN_VERSION = "v1.5.0-alpha-3"
-RULES_KOTLIN_SHA = "eeae65f973b70896e474c57aa7681e444d7a5446d9ec0a59bb88c59fc263ff62"
+RULES_KOTLIN_VERSION = "v1.5.0-beta-3"
+RULES_KOTLIN_SHA = "58edd86f0f3c5b959c54e656b8e7eb0b0becabd412465c37a2078693c2571f7f"
 
 http_archive(
     name = "io_bazel_rules_kotlin",
