@@ -37,7 +37,7 @@ maven_install(
 		"androidx.core:core-ktx:1.5.0",
 		"androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1",
 		"androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02",
-		"androidx.fragment:fragment-ktx:1.3.5",
+		"androidx.fragment:fragment-ktx:1.4.0-alpha03",
 		"androidx.appcompat:appcompat:1.3.0",
 		"com.google.android.material:material:1.4.0",
 		"androidx.constraintlayout:constraintlayout:2.1.0",
